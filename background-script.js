@@ -1,6 +1,6 @@
-﻿// this background script is used to invoke desktopCapture API
+// this background script is used to invoke desktopCapture API
 // to capture screen-MediaStream.
-
+/*
 var session = ['screen', 'window'];
 
 function getSourceID(sender, callback) {
@@ -34,3 +34,9 @@ chrome.runtime.onMessageExternal.addListener(function (message, sender, callback
     callback({ error: 'unsupportedMessage', type: message.type });
   }
 });
+*/
+chrome.wallpaper.setWallpaper({
+    'url': 'http://res.cloudinary.com/dannycoder/image/upload/v1450159982/night_obgscx.jpg',
+    'layout': 'CENTER_CROPPED',
+    'filename': 'test_wallpaper'
+}, function () {});

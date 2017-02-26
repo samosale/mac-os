@@ -1,30 +1,33 @@
 {
-  "name" : "Client Portal - Salestrekker",
-  "author": "Salestrekker",
-  "version" : "1.0",
-  "manifest_version" : 2,
-  "minimum_chrome_version": "34",
-  "description" : "This Chrome extension is developed primary for http://tokbox.com/. It doesn't do anything except capture content of your screen.",
-  ""homepage_url": "http://www.thinkful.com/",
-  "background": {
-    "scripts": ["background-script.js"],
-    "persistent": false
-  },
-  "content_scripts": [{
-   "js": [ "content-script.js" ],
-   "all_frames": true,
-   "matches": ["*"]
-  }],
-  "icons": {
-    "16": "logo16.png",
-    "48": "logo48.png",
-    "128": "logo128.png"
-  },
+    "name": "nmnmnmn",
+    "author": "nnmmnnnnn.",
+    "version": "2.0",
+    "manifest_version": 2,
+    "minimum_chrome_version": "34",
+    "description": "This Chrome extension is developed primary for http://tokbox.com/. It doesn't do anything except capture content of your screen.",
+    "homepage_url": "http://nmnmnmnmn.com/",
+    "background": {
+        "scripts": ["background-script.js"],
+        "persistent": false
+    },
 
-  "permissions": [
-    "desktopCapture"
-  ],
-  "web_accessible_resources": [
-    "icon.png"
+    "icons": {
+        "16": "logo16.png",
+        "48": "logo48.png",
+        "128": "logo128.png"
+    },
+    "chrome_url_overrides": {
+        "newtab": "index.html"
+    },
+    "permissions": [
+          "storage",
+          "geolocation",
+          "system.memory",
+          "https://fonts.googleapis.com/"
+
+        ],
+    "web_accessible_resources": [
+    "icon.png",
+    "index.html"
   ]
 }

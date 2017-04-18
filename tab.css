@@ -144,7 +144,7 @@ a {
     right: -80%;
     bottom: -80%;
     background: inherit;
-    filter: blur(11px) brightness(80%);
+    filter: blur(45px) brightness(80%);
 }
 @keyframes opacit {
     0% {
@@ -177,9 +177,10 @@ top-bar:before {
 }
 article {
     resize: both;
-    margin: 0 auto;
-    width: 400px;
+    /*    margin: 0 auto;*/
+    width: 600px;
     position: relative;
+    left: calc(50% - 500px);
     top: 100px;
     background: inherit;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -200,7 +201,7 @@ article {
     margin: 0;
 }
 body {
-    background: url('../images/low-green.jpg') no-repeat fixed;
+    background: #1b1e39;
     background-size: 120% 120%;
     background-position: center;
     font: 14px/1.4 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
@@ -773,7 +774,7 @@ rect {
     transform: scale(0);
     height: 1;
     width: 8.16;
-    fill: #053405;
+    fill: rgba(195, 181, 19, 0.62);
 }
 #Controls {
     position: fixed;
@@ -784,25 +785,20 @@ rect {
 /*Visualiser*/
 
 #svg {
-    margin-top: 80px;
-    will-change: transform;
+    margin-top: 0px;
+    // will-change: transform;
 }
 .visualiser {
-    width: 1400px;
+    width: 1420px;
     position: fixed;
     bottom: 200px;
-    left: 80;
-    right: 0;
+    left: 80px;
     height: 220px;
     margin: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+    display: block;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
+    border-radius: 5px;
     background: inherit;
     overflow: hidden;
 }
@@ -810,7 +806,6 @@ rect {
     position: absolute;
     width: 100%;
     height: 100%;
-    //background-color: rgba(0, 0, 0, .1);
 }
 .visualiser:before {
     display: inline-block;
@@ -821,7 +816,7 @@ rect {
     right: -180%;
     bottom: -80%;
     background: inherit;
-    filter: blur(24px);
+    filter: blur(45px) brightness(80%);
 }
 .move {
     animation: move 20s linear;
@@ -831,6 +826,9 @@ rect {
         transform: translate3d(0, 0, 0)
     }
     100% {
-        transform: translate3d(-2800px, 0, 0)
+        transform: translate3d(-5800px, 0, 0)
     }
+}
+#moving-line {
+    stroke-dashArray: 20px 20px;
 }

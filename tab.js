@@ -1,10 +1,15 @@
-var db = chrome.storage.local;
+var db = chrome.storage ? chrome.storage.local : localStorage;
 var notificationCenter = document.getElementsByTagName('notification-center')[0];
+if (chrome.storage) {
+    db.get('notes', function (items) {
 
-chrome.system.memory.getInfo(function callback(data) {
-    console.log(data);
-})
-
+        if (notesExists(items)) {
+            items.notes.forEach(function (note) {
+                renderNote(note.content);
+            });
+        }
+    });
+}
 document.body.addEventListener('mousedown', function (e) {
     if (e.target && e.target.matches("article div.truncate")) {
         notificationCenter.classList.toggle('translate-sidebar');
@@ -100,15 +105,6 @@ function saveNote(note) {
 
     });
 }
-
-db.get('notes', function (items) {
-
-    if (notesExists(items)) {
-        items.notes.forEach(function (note) {
-            renderNote(note.content);
-        });
-    }
-});
 
 document.getElementById('note-input').addEventListener('keydown', function (e) {
     var key = e.which;
@@ -242,6 +238,7 @@ var CalculatorOSX = (function () {
         }
     }
 })();
+
 document.body.addEventListener('mousedown', function (e) {
     if (e.target && e.target.matches("header ul li")) {
         if (document.querySelector(".visible") && document.querySelector(".selected")) {
@@ -285,6 +282,9 @@ var bufferLength = analyser.frequencyBinCount;
 var frequencyData = new Uint8Array(bufferLength);
 
 var svg = document.getElementsByClassName('rects')[0];
+
+var movingLine = document.getElementById('moving-line');
+
 let counter = 0;
 for (var i = 0; i < 700; i++) {
 
@@ -301,6 +301,9 @@ var rects = document.getElementsByTagName('rect');
 var len = rects.length;
 
 var counterRects = 0;
+var movingLineX = 0;
+var movingLineStart = 'M0 300';
+var pointArrays = [];
 
 function Render() {
     analyser.getByteFrequencyData(frequencyData);
@@ -312,6 +315,11 @@ function Render() {
             num += frequencyData[i];
         }
 
+        movingLineX += 9;
+
+        pointArrays.push(' L ' + movingLineX + ' ' + (300 - (num / 1024 * 6)));
+
+        movingLine.setAttribute('d', movingLineStart + pointArrays.slice(-1500).join());
         var player = rects[counterRects].animate([
             {
                 transform: 'scaleY(0)'
@@ -326,8 +334,10 @@ function Render() {
             delay: 0,
             fill: 'forwards'
         });
+
         counter = counter + 8.16;
         counterRects++;
+
     } else if (counterRects === 700) {
 
         svg.classList.remove('move');
@@ -339,6 +349,8 @@ function Render() {
             svg.removeChild(svg.firstChild);
         }
 
+        pointArrays.splice(0, pointArrays.length);
+        movingLineX = 0;
         var secCounter = 0;
         for (var k = 0; k < 700; k++) {
 
@@ -380,7 +392,7 @@ controls.addEventListener('click', function () {
 
 var request = new XMLHttpRequest();
 
-request.open('GET', '/music/1969995699_1130340345_238716527.mp3', true);
+request.open('GET', '/music/h.mp3', true);
 request.responseType = 'blob';
 
 request.onload = function () {
@@ -389,3 +401,53 @@ request.onload = function () {
 }
 
 request.send();
+
+var bkg = new Image();
+bkg.src = '../images/siera.jpg';
+bkg.onload = function () {
+    document.body.style.background = "url('../images/siera.jpg') no-repeat fixed";
+    document.body.style['background-size'] = '120% 120%';
+    document.body.style['background-position'] = 'center';
+}
+
+var selected = null, // Object of the element to be moved
+    x_pos = 0,
+    y_pos = 0, // Stores x & y coordinates of the mouse pointer
+    x_elem = 0,
+    y_elem = 0; // Stores top, left values (edge) of the element
+
+// Will be called when user starts dragging an element
+function _drag_init(elem) {
+    // Store the object of the element which needs to be moved
+    selected = elem;
+    x_elem = x_pos - selected.offsetLeft;
+    y_elem = y_pos - selected.offsetTop;
+}
+
+// Will be called when user dragging an element
+function _move_elem(e) {
+    x_pos = document.all ? window.event.clientX : e.pageX;
+    y_pos = document.all ? window.event.clientY : e.pageY;
+    if (selected !== null) {
+        selected.style.left = (x_pos - x_elem) + 'px';
+        selected.style.top = (y_pos - y_elem) + 'px';
+    }
+}
+
+// Destroy the object when we are done
+function _destroy() {
+    selected = null;
+}
+
+// Bind the functions...
+Array.from(document.getElementsByClassName('title'), function (val) {
+    val.addEventListener('mousedown', function () {
+        _drag_init(val.parentNode);
+        s
+        return false;
+    });
+});
+
+
+document.onmousemove = _move_elem;
+document.onmouseup = _destroy;

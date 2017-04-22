@@ -13,6 +13,15 @@ body {
 .small {
     transform: scaleY(0)
 }
+.hamburger {
+    float: right;
+}
+.hamburger:before {
+    content: '\2630';
+}
+.hamburger:active {
+    background: rgba(0, 0, 0, .2);
+}
 .content div {
     width: 100%;
     height: 50px;
@@ -238,6 +247,7 @@ notification-center {
     background: inherit;
     overflow: hidden;
     transition: transform .2s ease-out;
+    z-index: 2;
 }
 notification-center:before {
     display: inline-block;
@@ -753,6 +763,7 @@ header .selected:before {
     right: 25px;
 }
 .apple {
+    display: inline-block;
     background: inherit;
 }
 .header-rgba {
@@ -780,6 +791,8 @@ rect {
     position: fixed;
     bottom: 100px;
     left: 50px;
+    color: white;
+    
 }
 
 /*Visualiser*/
@@ -789,7 +802,7 @@ rect {
     // will-change: transform;
 }
 .visualiser {
-    width: 1420px;
+    width: 1220px;
     position: fixed;
     bottom: 200px;
     left: 80px;
@@ -816,7 +829,7 @@ rect {
     right: -180%;
     bottom: -80%;
     background: inherit;
-    filter: blur(45px) brightness(80%);
+    filter: blur(45px) brightness(20%);
 }
 .move {
     animation: move 20s linear;
@@ -831,4 +844,22 @@ rect {
 }
 #moving-line {
     stroke-dashArray: 20px 20px;
+}
+.dark-title {
+    background: inherit;
+    overflow: hidden;
+}
+.dark-title h2 {
+    color: white;
+}
+.dark-title:before {
+    display: inline-block;
+    content: '';
+    position: absolute;
+    top: -180%;
+    left: -180%;
+    right: -180%;
+    bottom: -180%;
+    background: inherit;
+    filter: blur(25px) brightness(20%);
 }

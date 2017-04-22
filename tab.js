@@ -9,9 +9,23 @@ if (chrome.storage) {
             });
         }
     });
+} else {
+    var notes = JSON.parse(localStorage.getItem('notes'));
+    if (!notes) {
+        notes = [];
+    ['jhgjhgj', 'jhkjfttddd', 'Call voice message', 'hartertbo ok'].forEach(function (val) {
+            renderNote(val);
+            notes.push(val);
+            localStorage.setItem('notes', JSON.stringify(notes));
+        })
+    } else {
+        notes.forEach(function (val) {
+            renderNote(val);
+        })
+    }
 }
 document.body.addEventListener('mousedown', function (e) {
-    if (e.target && e.target.matches("article div.truncate")) {
+    if (e.target && e.target.matches("li.hamburger")) {
         notificationCenter.classList.toggle('translate-sidebar');
     }
 });
@@ -81,29 +95,38 @@ function deleteNote(el) {
 }
 
 function saveNote(note) {
-    db.get('notes', function (storage) {
+    if (chrome.storage) {
 
-        if (!notesExists(storage)) {
 
-            db.set({
-                'notes': [{
-                    'content': note
+        db.get('notes', function (storage) {
+
+            if (!notesExists(storage)) {
+
+                db.set({
+                    'notes': [{
+                        'content': note
                     }]
-            }, function (e) {});
+                }, function (e) {});
 
-        } else {
-            var storageNotes = storage.notes;
+            } else {
+                var storageNotes = storage.notes;
 
-            storageNotes.push({
-                'content': note
-            });
+                storageNotes.push({
+                    'content': note
+                });
 
-            db.set({
-                'notes': storageNotes
-            }, function (e) {});
-        }
+                db.set({
+                    'notes': storageNotes
+                }, function (e) {});
+            }
 
-    });
+        });
+
+    } else {
+        var notes = JSON.parse(localStorage.getItem('notes'));
+        notes.push(note);
+        localStorage.setItem('notes', JSON.stringify(notes));
+    }
 }
 
 document.getElementById('note-input').addEventListener('keydown', function (e) {
@@ -438,16 +461,15 @@ function _move_elem(e) {
 function _destroy() {
     selected = null;
 }
-
 // Bind the functions...
 Array.from(document.getElementsByClassName('title'), function (val) {
+    console.log('kljljkljkkljljlk');
     val.addEventListener('mousedown', function () {
-        _drag_init(val.parentNode);
-        s
+        _drag_init(this.parentNode);
         return false;
-    });
-});
+    })
 
+});
 
 document.onmousemove = _move_elem;
 document.onmouseup = _destroy;

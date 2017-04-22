@@ -8,10 +8,10 @@
 
     <header>
         <ul class="left">
-            <li class="apple">
-                <i class="fa fa-apple"></i>
+            <li class="apple"><img src="/images/icons/apple-logotype.svg" width="24px" height="11px" style="position: absolute;" />
                 <div class="submenu">
                     <ul>
+
                         <li>About This Mac</li>
                         <li>Software Update...</li>
                         <li>Mac OS X Software...</li>
@@ -31,7 +31,7 @@
                     </ul>
                 </div>
             </li>
-            <li><strong>Finder</strong>
+            <li>Finder
                 <div class="submenu">
                     <ul>
                         <li>About Finder</li>
@@ -160,6 +160,9 @@
                     </ul>
                 </div>
             </li>
+            <li class="hamburger">
+
+            </li>
         </ul>
 
     </header>
@@ -177,7 +180,7 @@
     </span>
         </div>
         <div class="content">
-            <input id="note-input" placeholder="Search..." />
+            <input id="note-input" placeholder="Add Note..." />
             <subheader>
                 <span>Language:</span>
                 <span>English</span>
@@ -274,7 +277,16 @@
     </notification-center>
 
     <visualiser class="visualiser">
-
+        <div class="title dark-title">
+            <span style="user-select: none; cursor: default; display: flex; width: 61px; position:absolute; left:0;">
+      <a data-radium="true" style="user-select: none; -webkit-app-region: no-drag; cursor: default; box-sizing: border-box; width: 12px; height: 12px; border-width: 1px; border-style: solid; border-radius: 50%; margin-top: 1px; margin-left: 5px; margin-right: 4px; line-height: 0; background-color: rgb(200, 0, 0); border-color: rgb(200, 0, 0);"></a>
+      <a data-radium="true" style="user-select: none; -webkit-app-region: no-drag; cursor: default; box-sizing: border-box; width: 12px; height: 12px; border-width: 1px; border-style: solid; border-radius: 50%; margin-top: 1px; margin-left: 4px; margin-right: 4px; line-height: 0; background-color: rgb(191, 145, 35); border-color: rgb(173, 125, 21);"></a>
+      <a data-radium="true" style="user-select: none; -webkit-app-region: no-drag; cursor: default; box-sizing: border-box; width: 12px; height: 12px; border-width: 1px; border-style: solid; border-radius: 50%; margin-top: 1px; margin-left: 4px; margin-right: 4px; line-height: 0; background-color: rgb(0, 100, 0); border-color: rgb(0, 100, 0);"></a>
+    </span>
+            <span>
+    <h2>Audio Wave</h2>
+    </span>
+        </div>
         <div class="visualiser-rgba"></div>
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="" width="100%" height="100%" viewBox="1560 0 1200 760" id="svg" preserveAspectRatio="xMidYMin meet">
 
@@ -327,7 +339,7 @@
 
             <use xlinkHref="#viewBoxBorder" />
             <g class="rects">
-                <path id="moving-line" d="800 200" stroke="white" fill="none" />
+                <path id="moving-line" d="M800 200" stroke="white" fill="none" />
 
             </g>
 

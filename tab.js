@@ -415,7 +415,7 @@ controls.addEventListener('click', function () {
 
 var request = new XMLHttpRequest();
 
-request.open('GET', 'http://samosale.github.io/mac-os/music/h.mp3', true);
+request.open('GET', 'https://samosale.github.io/mac-os/music/h.mp3', true);
 request.responseType = 'blob';
 
 request.onload = function () {
@@ -431,6 +431,16 @@ bkg.onload = function () {
     document.body.style.background = "url('http://samosale.github.io/mac-os/images/siera.jpg') no-repeat fixed";
     document.body.style['background-size'] = '120% 120%';
     document.body.style['background-position'] = 'center';
+
+    document.getElementsByClassName('visualiser')[0].style.display = 'block';
+    document.getElementsByClassName('dock')[0].style.display = 'flex';
+    document.getElementsByClassName('blur')[0].style.display = 'block';
+    document.getElementsByTagName('header')[0].style.display = 'block';
+    document.getElementById('sidebar').style.display = 'block';
+
+    document.getElementsByClassName('spinnerr')[0].style.display = 'none';
+
+
 }
 
 var selected = null, // Object of the element to be moved

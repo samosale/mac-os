@@ -8,7 +8,6 @@ html,
 body {
     margin: 0;
     padding: 0px;
-    //transform: scale(1.01);
 }
 .small {
     transform: scaleY(0)
@@ -143,7 +142,9 @@ a {
     outline: none;
     border: 0;
 }
-.blur {}
+.blur {
+    display: none;
+}
 .blur:before {
     display: inline-block;
     content: '';
@@ -861,4 +862,42 @@ rect {
     bottom: -180%;
     background: inherit;
     filter: blur(25px) brightness(20%);
+}
+#sidebar {
+    display: none;
+}
+header {
+    display: none;
+}
+.visualiser {
+    display: none;
+}
+.dock {
+    display: none;
+}
+.spinnerr {
+    width: 84px;
+    height: 84px;
+    border-radius: 54px;
+    box-sizing: border-box;
+    border: 8px solid white;
+    position: absolute;
+    left: calc(50% - 54px);
+    top: 40%;
+    margin: -36px 0px 0px -36px;
+    border-top-color: rgb(81, 169, 201);
+    border-left-color: rgba(219, 67, 96, 0.9);
+    border-bottom-color: rgba(226, 200, 93, 0.8);
+    border-right-color: rgba(33, 147, 143, 0.7);
+    animation: rotate 800ms infinite linear;
+    transform: translateZ(0px);
+    margin: 50px;
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

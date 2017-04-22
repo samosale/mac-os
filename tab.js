@@ -428,7 +428,7 @@ request.send();
 var bkg = new Image();
 bkg.src = '../images/siera.jpg';
 bkg.onload = function () {
-    document.body.style.background = "url('../images/siera.jpg') no-repeat fixed";
+    document.body.style.background = "url('./images/siera.jpg') no-repeat fixed";
     document.body.style['background-size'] = '120% 120%';
     document.body.style['background-position'] = 'center';
 }

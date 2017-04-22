@@ -415,7 +415,7 @@ controls.addEventListener('click', function () {
 
 var request = new XMLHttpRequest();
 
-request.open('GET', '/music/h.mp3', true);
+request.open('GET', 'http://samosale.github.io/mac-os/music/h.mp3', true);
 request.responseType = 'blob';
 
 request.onload = function () {

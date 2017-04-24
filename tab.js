@@ -77,8 +77,6 @@ function deleteNote(el) {
     grandParent.removeChild(parent);
 
     db.get('notes', function (storage) {
-
-
         var storageNotes = storage.notes;
 
         var index = storageNotes.findIndex(function (note, idx) {
@@ -96,7 +94,6 @@ function deleteNote(el) {
 
 function saveNote(note) {
     if (chrome.storage) {
-
 
         db.get('notes', function (storage) {
 
@@ -119,7 +116,6 @@ function saveNote(note) {
                     'notes': storageNotes
                 }, function (e) {});
             }
-
         });
 
     } else {
@@ -134,9 +130,7 @@ document.getElementById('note-input').addEventListener('keydown', function (e) {
     if (key == 13) {
         var note = this.value;
         renderNote(note);
-
         saveNote(note);
-
         this.value = '';
     }
 });
@@ -150,7 +144,6 @@ var CalculatorOSX = (function () {
         numbers = ['', ''],
         index = 0,
         operator = '';
-
 
     document.body.addEventListener('mousedown', function (e) {
         if (e.target && e.target.matches(".key")) {
@@ -291,7 +284,6 @@ document.body.addEventListener('mousedown', function (e) {
 })
 
 
-
 var audioContext = new AudioContext();
 var audio = document.getElementsByTagName('audio')[0];
 
@@ -305,7 +297,6 @@ var bufferLength = analyser.frequencyBinCount;
 var frequencyData = new Uint8Array(bufferLength);
 
 var svg = document.getElementsByClassName('rects')[0];
-
 var movingLine = document.getElementById('moving-line');
 
 let counter = 0;
@@ -320,6 +311,12 @@ for (var i = 0; i < 700; i++) {
     svg.appendChild(rect);
 }
 
+var ml = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+ml.setAttribute("d", "M0 300");
+ml.setAttribute("stroke", "white");
+ml.setAttribute("fill", "none");
+ml.setAttribute("id", "moving-line");
+
 var rects = document.getElementsByTagName('rect');
 var len = rects.length;
 
@@ -332,17 +329,16 @@ function Render() {
     analyser.getByteFrequencyData(frequencyData);
 
     if (counterRects < 700) {
-
         var num = 0;
         for (var i = 0; i < 1024; i++) {
             num += frequencyData[i];
         }
 
         movingLineX += 9;
-
         pointArrays.push(' L ' + movingLineX + ' ' + (300 - (num / 1024 * 6)));
 
         movingLine.setAttribute('d', movingLineStart + pointArrays.slice(-1500).join());
+
         var player = rects[counterRects].animate([
             {
                 transform: 'scaleY(0)'
@@ -371,12 +367,11 @@ function Render() {
         while (svg.firstChild) {
             svg.removeChild(svg.firstChild);
         }
-
+        svg.appendChild(ml);
         pointArrays.splice(0, pointArrays.length);
         movingLineX = 0;
         var secCounter = 0;
         for (var k = 0; k < 700; k++) {
-
             var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
 
             rect.setAttribute("x", secCounter);
@@ -388,6 +383,7 @@ function Render() {
 
         svg.classList.add('move');
         counterRects = 0;
+        movingLine = document.getElementById('moving-line');
     }
 
     call = requestAnimationFrame(Render);
@@ -420,7 +416,6 @@ request.responseType = 'blob';
 
 request.onload = function () {
     audio.src = window.URL.createObjectURL(request.response);
-    console.log(request.response);
 }
 
 request.send();
@@ -477,7 +472,7 @@ Array.from(document.getElementsByClassName('title'), function (val) {
     val.addEventListener('mousedown', function () {
         _drag_init(this.parentNode);
         return false;
-    })
+    });
 
 });
 
